@@ -9,3 +9,5 @@ In This project, I applied:
 4. DOM
 5. Event handling and callback
 6. Git && Github
+
+A live demo of the project is found at https://abdelrahman-gado.github.io/etch-a-sketch/
