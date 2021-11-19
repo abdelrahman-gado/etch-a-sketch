@@ -33,25 +33,47 @@ function createBoard() {
 
 let sketchBoard = createBoard();
 const main = document.querySelector(".main");
-const clearBtn = document.querySelector(".controls .clear-btn");
+const clearBtn = document.querySelector(".controls #clear-btn");
+const rainbowBtn = document.querySelector(".controls #rainbow-btn");
+const blackBtn = document.querySelector(".controls #black-btn");
+let isRainbow = false;
 
-
+// convert sketchBoard.children which is a HTMLCollection to Array
 [...sketchBoard.children].forEach(element => {
     element.addEventListener("mouseenter", (e) => {
-        e.target.style.background = "black";
+        if (isRainbow) { 
+            e.target.style.background = `rgba(${255*Math.random()},
+             ${255*Math.random()}, ${255*Math.random()}, 0.8)`;
+        } else {
+            e.target.style.background = "black";
+        }
     });
 });
+
 
 clearBtn.addEventListener("click", (e) => {
     main.removeChild(sketchBoard);
     sketchBoard = createBoard();
     [...sketchBoard.children].forEach(element => {
         element.addEventListener("mouseenter", (e) => {
-            e.target.style.background = "black";
+            if (isRainbow) { 
+                e.target.style.background = `rgba(${255*Math.random()}, ${255*Math.random()}, ${255*Math.random()}, 0.7)`;
+            } else {
+                e.target.style.background = "black";
+            }
         });
     });
     main.appendChild(sketchBoard);
 });
+
+rainbowBtn.addEventListener("click", (e) => {
+    isRainbow = true;
+});
+
+blackBtn.addEventListener("click", () => {
+    isRainbow = false;
+});
+
 
 main.appendChild(sketchBoard);
 
